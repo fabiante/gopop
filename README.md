@@ -1,8 +1,17 @@
 # gopop - Wrapper arround the Poppler CLI
 
-This is a wrapper around the Poppler CLI tools. It is mostly a toy project to develop something
-open source. Feel free to contribute or use it but don't expect high availability support or maintenance
+This is a wrapper around the [Poppler CLI tools](https://poppler.freedesktop.org/).
+It is mostly a toy project to develop something open source.
+Feel free to contribute or use it but don't expect high availability support or maintenance
 (at least for the time being).
+
+The use case of this library is probably to integrate Poppler into a larger application.
+To archive wrapping Poppler commands, this library also implements the required parsing / util code which
+you can also you if you find any of it useful.
+
+## Versioning
+
+This project will not maintain a stable API until v1.0.0 is released.
 
 ## Why wrap the CLI?
 
