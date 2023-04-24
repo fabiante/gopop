@@ -1,4 +1,4 @@
-package poppler
+package gopop
 
 import (
 	"bytes"
