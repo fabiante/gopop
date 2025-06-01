@@ -16,6 +16,12 @@ func Last(page int) ConvertOption {
 	}
 }
 
+func Resolution(dpi int) ConvertOption {
+	return func(command *Command) {
+		command.args = append(command.args, "-r", strconv.Itoa(dpi))
+	}
+}
+
 func ScaleTo(scale int) ConvertOption {
 	return func(command *Command) {
 		command.args = append(command.args, "-scale-to", strconv.Itoa(scale))

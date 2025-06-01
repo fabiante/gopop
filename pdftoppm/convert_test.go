@@ -104,4 +104,32 @@ func TestCommand_Convert(t *testing.T) {
 			require.Less(t, size, int64(25000), "expected output file %q to be small (scale was set to 100)", file.Name())
 		}
 	})
+
+	t.Run("can define resolution", func(t *testing.T) {
+		dir, err := os.MkdirTemp("", "gopop-pdftoppm-test-*")
+		require.NoError(t, err)
+
+		cmd, err := pdftoppm.NewCommand(
+			"test.pdf", dir+"/img",
+			pdftoppm.Resolution(300), // high resolution will result in larger image size
+		)
+		require.NoError(t, err)
+		require.NotNil(t, cmd)
+
+		err = cmd.Run(context.Background())
+		require.NoError(t, err)
+
+		files, err := os.ReadDir(dir)
+		require.NoError(t, err)
+		require.Equal(t, 2, len(files), "expected 1 output file")
+
+		for _, file := range files {
+			// Get file info
+			info, err := os.Stat(dir + "/" + file.Name())
+			require.NoError(t, err)
+			size := info.Size()
+			// We know that with the higher DPI, images will be larger that 20M
+			require.Greater(t, size, int64(25000000), "expected output file %q to be large (due to high dpi)", file.Name())
+		}
+	})
 }
