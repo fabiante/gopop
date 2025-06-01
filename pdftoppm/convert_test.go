@@ -71,8 +71,8 @@ func TestCommand_Convert(t *testing.T) {
 			require.NoError(t, err)
 			size := info.Size()
 
-			// We know that without this limit, pages will be larger that 25K
-			// This is an assertion ment to ensure the test using scale works
+			// We know that without this limit, pages will be larger than 25K
+			// This is an assertion meant to ensure the test using scale works
 			require.GreaterOrEqual(t, size, int64(25000), "expected output file %q to be small (scale was set to 100)", file.Name())
 		}
 	})
@@ -100,7 +100,7 @@ func TestCommand_Convert(t *testing.T) {
 			info, err := os.Stat(dir + "/" + file.Name())
 			require.NoError(t, err)
 			size := info.Size()
-			// We know that without this limit, pages will be larger that 25K
+			// We know that without this limit, pages will be larger than 25K
 			require.Less(t, size, int64(25000), "expected output file %q to be small (scale was set to 100)", file.Name())
 		}
 	})
